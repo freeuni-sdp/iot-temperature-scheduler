@@ -1,2 +1,8 @@
 language: java
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: bMCXAwMFJj1jXA4kMwAG27A6lXb3tqtNNOaFYrLUG9uBQ+OP543i3XlQY/mKGx9SjRopdFeSbWE/R3ZDTIx6fARI5uFVXjsLLfgn1hHOElWpxOEQdYR/9n/BYna0ol1efHnPX1cELFs6W+sgaujj5Cu/ykbCIFc2VmizvKEOjFVip9GaKUNb8ZiCT6fZ4AFRgEmqnc4IYyu/aHOha0XrlvXvG1u7qjE8xrAR1zc1vsfN1vnL2Z8iU+DMXaGRfQpglTIdQo9MsVZpamefgRwBgwZOitPAOLyiMPcnyAxyuU6cl+4dwhBR7HULNig9leG/JgVXxi6GR33VztoJ6aBLEtzXfdLigRniPfP4uO+IbqadbsLBWA6u4O46/Rf2sOcc68i3tlwwUu2Ra0Gz1V6By0xtIefosFQUWXP6QR0pHkyAdWXiZZIDQQC8xKrw6Ghcydhjx/POkHpk17aJ0qON/Vv57PSD6xcYDfLReCN+Rb9Q3PzAll7SIBwyXDG29riOZwhaCC4Y+D9dAOvYFDsAbZYNqnjdBtAGJ+i9Xm9WQfmFF7ATpIWRCLfjRSH1g/2yLVdTWBY+opN3E9ES0AJpjYYpjgy3Tn1YC437ASSEuA0bqzWas7r5uj3XKhEcBsq/8U3cU5whPv3UjeZ/DQzE2gRetK/15k3w9SaS0E0vNNY=
+  app: iot-temperature-scheduler
+  on:
+    repo: freeuni-sdp/iot-temperature-scheduler
