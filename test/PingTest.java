@@ -14,8 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class PingTest extends JerseyTest {
 
     @Override
-    protected Application configure()
-    {
+    protected Application configure() {
         return new ResourceConfig(PingService.class);
     }
 

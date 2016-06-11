@@ -13,6 +13,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>temperature-scheduler microservice</servlet-name>
-		<url-pattern>/webapi/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 </web-app>
