@@ -1,1 +1,51 @@
-TODO API
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# iot-temperature-scheduler
+
+temperature-scheduler is a simple API that allows users get the required schedule and set prefered one
+
+## Ping [/ping]
+
+### Ping service [GET]
+
+Returns `200` if service is alive.
+
++ Response 200 (application/json)
+
+## Schedule [/]
+
+### Get Schedule [GET/houses/{house_id}/floors/{floor_id}/schedule{?start_time,end_time}]
+
+Returns Schelude of the given time interval
+
+
++ Response 200 (application/json)
+        
+        {
+            "schedule": [
+                {
+                    "start_time": "15/04/16, 16:00",
+                    "end_time": "15/04/16, 22:00",
+                    "temperature": 17
+                }, {
+                    "start_time": "15/04/16, 22:00",
+                    "end_time": "15/04/16, 23:00",
+                    "temperature": 21
+                }
+            ]
+        }
+    
+
+### Set Schedule [POST/houses/{house_id}/floors/{floor_id}/schedule]]
+
+Sets the given day's temperature schedule type to the prefered one
+
++ Request (application/json)
+
+        {
+            "date": "15/04/16",
+            "type": "working_day"
+        }
+
++ Response 200 (application/json)
