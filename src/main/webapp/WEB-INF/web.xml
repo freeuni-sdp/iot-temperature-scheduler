@@ -7,12 +7,12 @@
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>ge.edu.freeuni.sdp.todo.core;com.fasterxml.jackson.jaxrs.json</param-value>
+			<param-value>ge.edu.freeuni.sdp.service.scheduler.temperature;com.fasterxml.jackson.jaxrs.json</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>todo-core microservice</servlet-name>
+		<servlet-name>temperature-scheduler microservice</servlet-name>
 		<url-pattern>/webapi/*</url-pattern>
 	</servlet-mapping>
 </web-app>
