@@ -25,16 +25,16 @@ Returns Schelude of the given time interval
         {
             "schedule": [
                 {
-                    "dateFrom": "15/04/16, 16:00",
-                    "dateTo": "15/04/16, 22:00",
+                    "dateFrom": "monday, 16:00",
+                    "dateTo": "monday, 22:00",
                     "temperature": 17
                 }, {
-                    "dateFrom": "15/04/16, 22:00",
-                    "dateTo": "15/04/16, 23:00",
+                    "dateFrom": "monday, 22:00",
+                    "dateTo": "monday, 23:00",
                     "temperature": 21
                 }
             ]
-        }
+        }han
     
 
 ### Set Schedule [POST/houses/{house_id}/floors/{floor_id}/schedule]]
@@ -44,8 +44,8 @@ Sets the given day's temperature schedule type to the prefered one
 + Request (application/json)
 
         {
-            "dateFrom": "20/05/16, 16:00",
-            "dateTo": "21/05/16, 22:00",
+            "dateFrom": "sunday,16:00",
+            "dateTo": "sunday,22:00",
             "temperature": 18
         }
 
