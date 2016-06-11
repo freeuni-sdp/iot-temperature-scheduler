@@ -25,12 +25,12 @@ Returns Schelude of the given time interval
         {
             "schedule": [
                 {
-                    "start_time": "15/04/16, 16:00",
-                    "end_time": "15/04/16, 22:00",
+                    "dateFrom": "15/04/16, 16:00",
+                    "dateTo": "15/04/16, 22:00",
                     "temperature": 17
                 }, {
-                    "start_time": "15/04/16, 22:00",
-                    "end_time": "15/04/16, 23:00",
+                    "dateFrom": "15/04/16, 22:00",
+                    "dateTo": "15/04/16, 23:00",
                     "temperature": 21
                 }
             ]
@@ -44,8 +44,9 @@ Sets the given day's temperature schedule type to the prefered one
 + Request (application/json)
 
         {
-            "date": "15/04/16",
-            "type": "working_day"
+            "dateFrom": "20/05/16, 16:00",
+            "dateTo": "21/05/16, 22:00",
+            "temperature": 18
         }
 
 + Response 200 (application/json)
