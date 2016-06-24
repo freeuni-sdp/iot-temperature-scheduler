@@ -7,7 +7,6 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Created by vato on 6/24/16.

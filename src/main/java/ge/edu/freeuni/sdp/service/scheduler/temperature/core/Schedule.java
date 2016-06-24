@@ -73,7 +73,7 @@ public class Schedule {
         this.entryList = entryList;
     }
 
-    public Object getSchedule(int dateFrom, int dateTo){
+    public Object getSchedule(long dateFrom, long dateTo){
         return null;
     }
 
