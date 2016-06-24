@@ -1,7 +1,6 @@
 package ge.edu.freeuni.sdp.service.scheduler.temperature.core;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -9,34 +8,31 @@ import java.util.List;
  */
 public class Schedule {
 
-    private Date dateFrom;
-    private Date dateTo;
     private List<TemperatureEntry> entryList;
 
-    public Schedule(Date dateFrom, Date dateTo) {
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
+    public Schedule() {
         this.entryList = new ArrayList<>();
     }
 
     public void addEntry(TemperatureEntry entry) {
-        this.entryList.add(entry);
-    }
 
-    public Date getDateFrom() {
-        return dateFrom;
-    }
+        int subListStartIndex = 0, subListEndIndex = 0;
+        for (int k = 0; k < entryList.size(); k++) {
+            if (entryList.get(k).getDateTo() >= entry.getDateFrom() && subListStartIndex == 0) {
+                entryList.get(k).setDateTo(entry.getDateFrom());
+                subListStartIndex = k;
+            }
+            if (entryList.get(k).getDateTo() >= entry.getDateTo())  {
+                entryList.get(k).setDateFrom(entry.getDateTo());
+                subListEndIndex = k;
+                break;
+            }
+        }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
-    }
+        List removeList = entryList.subList(subListStartIndex, subListEndIndex);
+        entryList.add(subListStartIndex, entry);
+        entryList.removeAll(removeList);
 
-    public Date getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
     }
 
     public List<TemperatureEntry> getEntryList() {
@@ -47,4 +43,25 @@ public class Schedule {
         this.entryList = entryList;
     }
 
+    public Object getSchedule(int dateFrom, int dateTo){
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        String returnVal = "";
+        for (TemperatureEntry entry:entryList){
+            returnVal += "" + entry.getDateFrom() + " " + entry.getDateTo() + " " + entry.getTemperature() + "||";
+        }
+        return returnVal;
+    }
+
+//    public static void main(String[] agrs){
+//
+//        Schedule schedule = new Schedule();
+//        schedule.addEntry(new TemperatureEntry(1, 10, 5));
+//        System.out.println(schedule);
+//
+//
+//    }
 }

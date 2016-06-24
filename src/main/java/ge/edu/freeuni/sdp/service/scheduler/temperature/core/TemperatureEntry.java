@@ -2,7 +2,6 @@ package ge.edu.freeuni.sdp.service.scheduler.temperature.core;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
 
 /**
  * Created by vato on 6/12/16.
@@ -11,34 +10,34 @@ import java.util.Date;
 public class TemperatureEntry {
 
     @XmlElement
-    private Date dateFrom;
+    private long dateFrom;
     @XmlElement
-    private Date dateTo;
+    private long dateTo;
     @XmlElement
     private int temperature;
 
     public TemperatureEntry() {
     }
 
-    public TemperatureEntry(Date dateFrom, Date dateTo, int temperature) {
+    public TemperatureEntry(long dateFrom, long dateTo, int temperature) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.temperature = temperature;
     }
 
-    public Date getDateFrom() {
+    public long getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(long dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public long getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(long dateTo) {
         this.dateTo = dateTo;
     }
 

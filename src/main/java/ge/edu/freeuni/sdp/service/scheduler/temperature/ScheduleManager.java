@@ -6,7 +6,6 @@ import ge.edu.freeuni.sdp.service.scheduler.temperature.core.TemperatureEntry;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Date;
 
 /**
  * Created by vato on 6/12/16.
@@ -20,7 +19,7 @@ public class ScheduleManager {
     @GET
     public Schedule get(@PathParam("house_id") int houseId, @PathParam("floor_id") int floorId,
                         @PathParam("start_time") long dateFrom, @PathParam("end_time") long dateTo ) {
-        return new Schedule(new Date(dateFrom), new Date(dateTo));
+        return new Schedule();
     }
 
     @Consumes( {MediaType.APPLICATION_JSON} )
