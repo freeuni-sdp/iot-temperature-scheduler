@@ -1,5 +1,7 @@
 package ge.edu.freeuni.sdp.service.scheduler.temperature.core;
 
+import org.json.JSONArray;
+
 import javax.ws.rs.client.Entity;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class House {
         this.floorList.add(floor);
     }
 
-    public Entity getSchedule(int floorId, long dateFrom, long dateTo) {
+    public JSONArray getSchedule(int floorId, long dateFrom, long dateTo) {
         for (Floor floor : this.floorList) {
             if (floor.getFloorIndex() == floorId) {
                 return floor.getScheduleRange(dateFrom, dateTo);
