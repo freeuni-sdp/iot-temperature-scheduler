@@ -1,5 +1,8 @@
 package ge.edu.freeuni.sdp.service.scheduler.temperature.core;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +12,10 @@ import java.util.List;
 public class Schedule {
 
     private List<TemperatureEntry> entryList;
+    private int defaultTemp;
 
     public Schedule() {
+        this.defaultTemp = 18;
         this.entryList = new ArrayList<>();
     }
 
@@ -73,8 +78,25 @@ public class Schedule {
         this.entryList = entryList;
     }
 
-    public Object getSchedule(long dateFrom, long dateTo){
-        return null;
+    public JSONArray getSchedule(long dateFrom, long dateTo){
+        JSONArray requestedList = new JSONArray();
+        for (TemperatureEntry anEntryList : entryList) {
+            if (contains(anEntryList, dateFrom, dateTo)) {
+                JSONObject temp = new JSONObject();
+                temp.put("dateFrom", anEntryList.getDateFrom());
+                temp.put("dateTo", anEntryList.getDateTo());
+                temp.put("temperature", anEntryList.getTemperature());
+                requestedList.put(temp);
+            }
+        }
+
+        return requestedList;
+    }
+
+    private boolean contains(TemperatureEntry temp, long dateFrom, long dateTo){
+
+        return  (temp.getDateFrom() >= dateFrom && temp.getDateFrom() <= dateTo) ||
+                (temp.getDateTo() >= dateFrom && temp.getDateTo() <= dateTo);
     }
 
     @Override
@@ -87,7 +109,6 @@ public class Schedule {
     }
 
     public static void main(String[] agrs){
-
 
     }
 }
