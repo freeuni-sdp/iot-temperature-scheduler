@@ -2,7 +2,6 @@ package ge.edu.freeuni.sdp.service.scheduler.temperature.core;
 
 import org.json.JSONArray;
 
-import javax.ws.rs.client.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
