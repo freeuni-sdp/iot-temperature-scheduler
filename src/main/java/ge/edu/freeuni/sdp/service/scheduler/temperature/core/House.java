@@ -16,24 +16,36 @@ public class House {
     public House(String houseIndex) {
         this.houseIndex = houseIndex;
         this.floorList = new ArrayList<>();
+        for (int i=1; i<4; i++) {
+            String id = "floor" + 1;
+            addFloor(id);
+        }
     }
 
     public String getHouseIndex() {
         return houseIndex;
     }
 
-    public void addFloor(int index) {
+    public void addFloor(String index) {
         Floor floor = new Floor(index);
         floor.setSchedule(new Schedule());
         this.floorList.add(floor);
     }
 
-    public JSONArray getSchedule(int floorId, long dateFrom, long dateTo) {
+    public JSONArray getSchedule(String floorId, long dateFrom, long dateTo) {
         for (Floor floor : this.floorList) {
-            if (floor.getFloorIndex() == floorId) {
+            if (floor.getFloorIndex().equals(floorId)) {
                 return floor.getScheduleRange(dateFrom, dateTo);
             }
         }
         return new JSONArray();
+    }
+
+    public void addSchedule(String floorId, TemperatureEntry entry) {
+        for (Floor floor : this.floorList) {
+            if (floor.getFloorIndex().equals(floorId)) {
+                floor.setScheduleRange(entry);
+            }
+        }
     }
 }

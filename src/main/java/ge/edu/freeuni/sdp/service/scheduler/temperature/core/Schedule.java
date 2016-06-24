@@ -80,6 +80,11 @@ public class Schedule {
 
     public JSONArray getSchedule(long dateFrom, long dateTo){
         JSONArray requestedList = new JSONArray();
+        JSONObject obj = new JSONObject();
+        obj.put("dateFrom", new Long(dateFrom));
+        obj.put("dateTo", new Long(dateTo));
+        obj.put("temperature", new Long(defaultTemp));
+        requestedList.put(obj.toString());
         for (TemperatureEntry anEntryList : entryList) {
             if (contains(anEntryList, dateFrom, dateTo)) {
                 JSONObject temp = new JSONObject();

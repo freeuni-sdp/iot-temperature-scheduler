@@ -37,7 +37,6 @@ public class TemperatureScheduler {
         for (House house: removeList) {
             houseList.remove(house);
         }
-        System.out.println(houseList.size());
     }
 
     public void start() {

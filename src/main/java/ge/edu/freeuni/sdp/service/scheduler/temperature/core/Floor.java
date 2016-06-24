@@ -7,10 +7,10 @@ import org.json.JSONArray;
  */
 public class Floor {
 
-    private int floorIndex;
+    private String floorIndex;
     private Schedule schedule;
 
-    public Floor(int floorIndex) {
+    public Floor(String floorIndex) {
         this.floorIndex = floorIndex;
         this.schedule = null;
     }
@@ -19,7 +19,7 @@ public class Floor {
         this.schedule = schedule;
     }
 
-    public int getFloorIndex() {
+    public String getFloorIndex() {
         return floorIndex;
     }
 
@@ -29,5 +29,9 @@ public class Floor {
 
     public JSONArray getScheduleRange(long dateFrom, long dateTo) {
         return this.schedule.getSchedule(dateFrom, dateTo);
+    }
+
+    public void setScheduleRange(TemperatureEntry entry) {
+        this.schedule.addEntry(entry);
     }
 }
