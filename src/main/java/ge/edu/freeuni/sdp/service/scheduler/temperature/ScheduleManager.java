@@ -17,74 +17,26 @@ import java.util.List;
 /**
  * Created by vato on 6/12/16.
  */
-@Path("/")
-@Consumes( { MediaType.APPLICATION_JSON})
+@Path("/houses/{house_id}/floors/{floor_id}")
 @Produces( { MediaType.APPLICATION_JSON})
 public class ScheduleManager {
 
-    private List<House> houseList;
-
-    private void checkHouses(List<String> ids) {
-        for (String houseId : ids) {
-            boolean contains = false;
-            for (House house : houseList) {
-                if (house.getHouseIndex().equals(houseId)) {
-                    contains = true;
-                    break;
-                }
-            }
-            if (!contains) {
-                houseList.add(new House(houseId));
-            }
-        }
-        List<House> removeList = new ArrayList<>();
-        for (House house: houseList) {
-            if (!ids.contains(house.getHouseIndex())) {
-                removeList.add(house);
-            }
-        }
-        for (House house: removeList) {
-            houseList.remove(house);
-        }
-    }
-
-    public ScheduleManager() {
-        final HouseRegistryService houseRegistryService = new HouseRegistryService(ServiceState.REAL);
-        houseList = new ArrayList<>();
-        Thread thr = new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        List<String> ids = houseRegistryService.refreshAll();
-                        checkHouses(ids);
-                        Thread.sleep(30000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        thr.start();
-    }
-
-    @Path("/houses/{house_id}/floors/{floor_id}/?{start_time}&{end_time}")
+    @Path("/{start}&{end}")
     @GET
-    public Response get(@PathParam("house_id") String houseId, @PathParam("floor_id") int floorId,
-                         @PathParam("start_time") long dateFrom, @PathParam("end_time") long dateTo) {
+    public JSONArray get(@PathParam("house_id") String houseId, @PathParam("floor_id") int floorId,
+                         @PathParam("start") long dateFrom, @PathParam("end") long dateTo) {
         JSONArray answer = new JSONArray();
-        for (House house: this.houseList) {
+        for (House house: TemperatureScheduler.getHouseList()) {
             if (house.getHouseIndex().equals(houseId)) {
                 answer = house.getSchedule(floorId, dateFrom, dateTo);
             }
         }
-        return Response.ok().entity(answer).build();
+        return answer;
     }
 
-    @Consumes( {MediaType.APPLICATION_JSON} )
-    @Path("/houses/{house_id}/floors/{floor_id}/")
+    @Path("/")
     @POST
-    public Response setSchedule(TemperatureEntry entry) {
+    public Response post(@PathParam("house_id") String houseId, @PathParam("floor_id") int floorId) {
         return Response.ok().build();
     }
 

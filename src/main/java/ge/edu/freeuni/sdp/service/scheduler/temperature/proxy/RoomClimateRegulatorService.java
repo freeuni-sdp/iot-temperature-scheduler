@@ -13,9 +13,9 @@ import javax.ws.rs.client.Entity;
  */
 public class RoomClimateRegulatorService {
 
-    private static final String ROOM_CLIMATE_REGULATOR_API = "https://iot-room-climate-regulator.herokuapp.com/";
+    private static final String ROOM_CLIMATE_REGULATOR_API = "https://iot-room-climate-regulator.herokuapp.com";
     private static final String ROOM_CLIMATE_REGULATOR_MOCK =
-            "https://private-028973-iotroomclimateregulator.apiary-mock.com/webapi/houses/12/floors/3/task";
+            "https://private-028973-iotroomclimateregulator.apiary-mock.com/webapi";
 
     private Client client;
     private String url;

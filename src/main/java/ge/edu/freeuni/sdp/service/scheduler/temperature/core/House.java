@@ -34,6 +34,6 @@ public class House {
                 return floor.getScheduleRange(dateFrom, dateTo);
             }
         }
-        return null;
+        return new JSONArray();
     }
 }

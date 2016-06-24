@@ -12,7 +12,7 @@
 	<build>
 		<testSourceDirectory>test</testSourceDirectory>
 
-		<finalName>todo-core</finalName>
+		<finalName>temperature_scheduler</finalName>
 		<plugins>
 
 			<plugin>
