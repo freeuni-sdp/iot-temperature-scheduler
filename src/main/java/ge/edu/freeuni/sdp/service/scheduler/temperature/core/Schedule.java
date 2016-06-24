@@ -108,7 +108,4 @@ public class Schedule {
         return returnVal;
     }
 
-    public static void main(String[] agrs){
-
-    }
 }
