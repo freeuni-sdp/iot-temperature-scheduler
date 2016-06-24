@@ -15,16 +15,10 @@ Returns `200` if service is alive.
 
 ## Schedule [/]
 
-### Get Schedule [GET/houses/{house_id}/floors/{floor_id}/]
+### Get Schedule [GET/houses/{house_id}/floors/{floor_id}/schedule{?start_time,end_time}]
 
 Returns Schelude of the given time interval
 
-+ Request (application/json)
-
-        {
-            "dateFrom": "yyyy-DD-MM HH:mm:ss",
-            "dateTo": "yyyy-DD-MM HH:mm:ss"
-        }
 
 + Response 200 (application/json)
         
@@ -43,7 +37,7 @@ Returns Schelude of the given time interval
         }
     
 
-### Set Schedule [POST/houses/{house_id}/floors/{floor_id}/]]
+### Set Schedule [POST/houses/{house_id}/floors/{floor_id}/schedule]]
 
 Sets the given day's temperature schedule type to the prefered one
 
