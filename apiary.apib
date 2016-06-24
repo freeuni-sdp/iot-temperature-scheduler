@@ -15,29 +15,35 @@ Returns `200` if service is alive.
 
 ## Schedule [/]
 
-### Get Schedule [GET/houses/{house_id}/floors/{floor_id}/schedule{?start_time,end_time}]
+### Get Schedule [GET/houses/{house_id}/floors/{floor_id}/]
 
 Returns Schelude of the given time interval
 
++ Request (application/json)
+
+        {
+            "dateFrom": "yyyy-DD-MM HH:mm:ss",
+            "dateTo": "yyyy-DD-MM HH:mm:ss"
+        }
 
 + Response 200 (application/json)
         
         {
             "schedule": [
                 {
-                    "dateFrom": "monday, 16:00",
-                    "dateTo": "monday, 22:00",
+                    "dateFrom": "yyyy-DD-MM HH:mm:ss",
+                    "dateTo": "yyyy-DD-MM HH:mm:ss",
                     "temperature": 17
                 }, {
-                    "dateFrom": "monday, 22:00",
-                    "dateTo": "monday, 23:00",
+                    "dateFrom": "yyyy-DD-MM HH:mm:ss",
+                    "dateTo": "yyyy-DD-MM HH:mm:ss",
                     "temperature": 21
                 }
             ]
-        }han
+        }
     
 
-### Set Schedule [POST/houses/{house_id}/floors/{floor_id}/schedule]]
+### Set Schedule [POST/houses/{house_id}/floors/{floor_id}/]]
 
 Sets the given day's temperature schedule type to the prefered one
 
