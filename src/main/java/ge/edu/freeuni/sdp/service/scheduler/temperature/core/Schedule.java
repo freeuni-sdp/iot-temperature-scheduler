@@ -23,6 +23,7 @@ public class Schedule {
         for (int k = 0; k < entryList.size(); k++){
             k = intersect(entry, k);
         }
+
         int insertIndex = 0;
         for (int k = entryList.size() - 1; k >= 0; k--){
             if (entry.getDateFrom() >= entryList.get(k).getDateTo()){
@@ -31,31 +32,28 @@ public class Schedule {
             }
         }
         entryList.add(insertIndex, entry);
+        System.out.println(toString());
     }
 
     private int intersect(TemperatureEntry entry, int index){
         TemperatureEntry temp = entryList.get(index);
-        if (temp.getDateFrom() <= entry.getDateFrom() && entry.getDateTo() <= temp.getDateTo()){
-            split(entry, index);
-            System.out.println(1);
-            return index;
+        if (entry.getDateFrom() <= temp.getDateFrom() && entry.getDateTo() >= temp.getDateTo()){
+            entryList.remove(index);
+            return index - 1;
         }
 
-        if (temp.getDateFrom() >= entry.getDateFrom() && entry.getDateTo() >= temp.getDateTo()){
-            entryList.remove(index);
-            System.out.println(2);
-            return index - 1;
+        if (temp.getDateFrom() <= entry.getDateFrom() && entry.getDateTo() <= temp.getDateTo()){
+            split(entry, index);
+            return index;
         }
 
         if (temp.getDateFrom() <= entry.getDateFrom() && temp.getDateTo() >= entry.getDateFrom()){
             temp.setDateTo(entry.getDateFrom());
-            System.out.println(3);
             return index;
         }
 
         if (temp.getDateFrom() <= entry.getDateTo() && temp.getDateTo() >= entry.getDateTo()){
             temp.setDateFrom(entry.getDateTo());
-            System.out.println(4);
             return index;
         }
         return index;
@@ -80,18 +78,13 @@ public class Schedule {
 
     public JSONArray getSchedule(long dateFrom, long dateTo){
         JSONArray requestedList = new JSONArray();
-        JSONObject obj = new JSONObject();
-        obj.put("dateFrom", new Long(dateFrom));
-        obj.put("dateTo", new Long(dateTo));
-        obj.put("temperature", new Long(defaultTemp));
-        requestedList.put(obj.toString());
         for (TemperatureEntry anEntryList : entryList) {
             if (contains(anEntryList, dateFrom, dateTo)) {
                 JSONObject temp = new JSONObject();
                 temp.put("dateFrom", anEntryList.getDateFrom());
                 temp.put("dateTo", anEntryList.getDateTo());
                 temp.put("temperature", anEntryList.getTemperature());
-                requestedList.put(temp);
+                requestedList.put(temp.toString());
             }
         }
 
@@ -112,5 +105,6 @@ public class Schedule {
         }
         return returnVal;
     }
+
 
 }

@@ -4,7 +4,6 @@ import ge.edu.freeuni.sdp.service.scheduler.temperature.core.House;
 import ge.edu.freeuni.sdp.service.scheduler.temperature.core.TemperatureEntry;
 import org.json.JSONArray;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -21,7 +20,6 @@ public class ScheduleManager {
     public JSONArray get(@PathParam("house_id") String houseId, @PathParam("floor_id") String floorId,
                          @QueryParam("start") long dateFrom, @QueryParam("end") long dateTo) {
         JSONArray answer = new JSONArray();
-        System.out.println(dateFrom + "  " + dateTo);
         for (House house: TemperatureScheduler.getHouseList()) {
             if (house.getHouseIndex().equals(houseId)) {
                 answer = house.getSchedule(floorId, dateFrom, dateTo);
