@@ -48,4 +48,15 @@ public class House {
             }
         }
     }
+
+    public List<Notification> getNotifications(){
+        List<Notification> schedules = new ArrayList<>();
+        Notification temp;
+        for (Floor floor: floorList) {
+            temp = floor.getNotification();
+            temp.setHouseIndex(houseIndex);
+            schedules.add(temp);
+        }
+        return schedules;
+    }
 }

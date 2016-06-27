@@ -14,6 +14,8 @@ import javax.ws.rs.core.Response;
 @Path("/houses/{house_id}/floors/{floor_id}")
 public class ScheduleManager {
 
+
+
     @Produces( {MediaType.APPLICATION_JSON})
     @Path("/schedule")
     @GET
@@ -34,6 +36,7 @@ public class ScheduleManager {
     public Response post(@PathParam("house_id") String houseId, @PathParam("floor_id") String floorId,
                          TemperatureEntry entry) {
         for (House house: TemperatureScheduler.getHouseList()) {
+            System.out.println(house.getHouseIndex());
             if (house.getHouseIndex().equals(houseId)) {
                 house.addSchedule(floorId, entry);
             }

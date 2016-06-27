@@ -1,5 +1,6 @@
 package ge.edu.freeuni.sdp.service.scheduler.temperature.proxy;
 
+import ge.edu.freeuni.sdp.service.scheduler.temperature.core.Notification;
 import ge.edu.freeuni.sdp.service.scheduler.temperature.core.ServiceState;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -7,6 +8,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Created by vato on 6/24/16.
@@ -44,6 +46,18 @@ public class RoomClimateRegulatorService {
         String requestUrl = String.format("%s/houses/%s/floors/%s/task", this.url, houseId, floorId);
         System.out.println(requestUrl);
         client.target(requestUrl).request().put(entity);
+    }
+
+    public void createRequest(Notification requestInfo) {
+        String requestUrl = String.format("%s/houses/%s/floors/%s/task",
+                this.url,
+                requestInfo.getHouseIndex(),
+                requestInfo.getFloorIndex());
+        client.target(requestUrl)
+                .request(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .post(Entity.json(requestInfo.getSchedule().toString()));
+//        client.target(requestUrl).request().put(requestInfo.getSchedule().toString());
     }
 
 }

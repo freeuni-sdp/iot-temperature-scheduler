@@ -34,4 +34,11 @@ public class Floor {
     public void setScheduleRange(TemperatureEntry entry) {
         this.schedule.addEntry(entry);
     }
+
+    public Notification getNotification(){
+        /**
+         * Returns info for Room climate regulator
+         **/
+        return new Notification(floorIndex, schedule.getCurSchedule());
+    }
 }

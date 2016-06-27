@@ -13,6 +13,7 @@ public class Schedule {
 
     private List<TemperatureEntry> entryList;
     private int defaultTemp;
+    private int DEFAULT_MILISECONDS_PER_SET = 500;
 
     public Schedule() {
         this.defaultTemp = 18;
@@ -106,5 +107,23 @@ public class Schedule {
         return returnVal;
     }
 
+    public JSONObject getCurSchedule(){
+        long curTime = System.currentTimeMillis();
+        JSONObject returnValue = new JSONObject();
+        for (TemperatureEntry entry : entryList){
+            if (entry.getDateFrom() <= curTime && entry.getDateTo() >= curTime){
+                long period = Math.min(entry.getDateTo() - curTime, DEFAULT_MILISECONDS_PER_SET);
+                returnValue.put("period", period);
+                returnValue.put("temperature", entry.getTemperature());
+                return returnValue;
+            }
+        }
+        returnValue.put("period", DEFAULT_MILISECONDS_PER_SET);
+        returnValue.put("temperature", defaultTemp);
+        return returnValue;
+    }
 
+
+    public static void main(String[] args){
+    }
 }
