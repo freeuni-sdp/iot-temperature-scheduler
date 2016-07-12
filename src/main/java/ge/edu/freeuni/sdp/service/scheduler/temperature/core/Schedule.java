@@ -33,7 +33,6 @@ public class Schedule {
             }
         }
         entryList.add(insertIndex, entry);
-        System.out.println(toString());
     }
 
     private int intersect(TemperatureEntry entry, int index){
@@ -85,7 +84,7 @@ public class Schedule {
                 temp.put("dateFrom", anEntryList.getDateFrom());
                 temp.put("dateTo", anEntryList.getDateTo());
                 temp.put("temperature", anEntryList.getTemperature());
-                requestedList.put(temp.toString());
+                requestedList.put(temp);
             }
         }
 

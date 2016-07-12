@@ -36,30 +36,15 @@ public class RoomClimateRegulatorService {
         this.client = ClientBuilder.newClient(config);
     }
 
-    /**
-     * Creates and sends request to url of API (Mock or REAL)
-     * @param houseId int describing house number
-     * @param floorId int describing floor number
-     * @param entity Entity containing JSON to send
-     */
-    public void createRequest(int houseId, int floorId, Entity entity) {
-        String requestUrl = String.format("%s/houses/%s/floors/%s/task", this.url, houseId, floorId);
-        System.out.println(requestUrl);
-        client.target(requestUrl).request().put(entity);
-    }
-
     public void createRequest(Notification requestInfo) {
         String requestUrl = String.format("%s/houses/%s/floors/%s/task",
                 this.url,
                 requestInfo.getHouseIndex(),
                 requestInfo.getFloorIndex());
-        System.out.println(requestUrl);
-        System.out.println(requestInfo.getSchedule().toString());
         client.target(requestUrl)
                 .request(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .put(Entity.json(requestInfo.getSchedule().toString()));
-//        client.target(requestUrl).request().put(requestInfo.getSchedule().toString());
     }
 
 }

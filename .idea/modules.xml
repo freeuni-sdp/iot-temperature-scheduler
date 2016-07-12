@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/iot-temperature-scheduler.iml" filepath="$PROJECT_DIR$/iot-temperature-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/temperature_scheduler.iml" filepath="$PROJECT_DIR$/temperature_scheduler.iml" />
     </modules>
   </component>
 </project>

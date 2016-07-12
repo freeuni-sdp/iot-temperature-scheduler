@@ -22,13 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="iot-temperature-scheduler" />
-        <module name="todo-core" />
+        <module name="temperature_scheduler" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="iot-temperature-scheduler" target="1.7" />
-      <module name="todo-core" target="1.7" />
+      <module name="temperature_scheduler" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
