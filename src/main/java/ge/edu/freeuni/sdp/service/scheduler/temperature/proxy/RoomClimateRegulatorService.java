@@ -53,10 +53,12 @@ public class RoomClimateRegulatorService {
                 this.url,
                 requestInfo.getHouseIndex(),
                 requestInfo.getFloorIndex());
+        System.out.println(requestUrl);
+        System.out.println(requestInfo.getSchedule().toString());
         client.target(requestUrl)
                 .request(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .post(Entity.json(requestInfo.getSchedule().toString()));
+                .put(Entity.json(requestInfo.getSchedule().toString()));
 //        client.target(requestUrl).request().put(requestInfo.getSchedule().toString());
     }
 

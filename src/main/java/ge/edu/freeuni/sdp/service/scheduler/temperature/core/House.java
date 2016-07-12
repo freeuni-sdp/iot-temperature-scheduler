@@ -17,7 +17,7 @@ public class House {
         this.houseIndex = houseIndex;
         this.floorList = new ArrayList<>();
         for (int i=1; i<4; i++) {
-            String id = "floor" + 1;
+            String id = "floor" + i;
             addFloor(id);
         }
     }

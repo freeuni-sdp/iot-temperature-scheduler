@@ -47,8 +47,9 @@ public class TemperatureScheduler {
 
     public void notifyClimateRegulator(){
         List<Notification> notifications = new ArrayList<>();
-        for (House house:houseList)
+        for (House house:houseList) {
             notifications.addAll(house.getNotifications());
+        }
 
         for (Notification notification:notifications){
             roomClimateRegulatorService.createRequest(notification);
