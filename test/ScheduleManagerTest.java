@@ -3,6 +3,7 @@ import ge.edu.freeuni.sdp.service.scheduler.temperature.core.TemperatureEntry;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
@@ -32,6 +33,7 @@ public class ScheduleManagerTest extends JerseyTest {
 
     @Test
     public void get_test_2(){
+        System.out.println("Testing get 2");
         FakeList.instance().clear();
         House house = new House("1");
         house.addFloor("1");
@@ -39,9 +41,14 @@ public class ScheduleManagerTest extends JerseyTest {
         house.addSchedule("1", entry);
         FakeList.instance().addHouse(house);
 
-        Response resp = target("/houses/1/floors/1/schedule?start=1").request().get();
+        Response resp = target("/houses/1/floors/1/schedule")
+                .queryParam("start", 1)
+                .queryParam("end", 2)
+                .request().get();
 
-
+        assertEquals(Response.Status.OK.getStatusCode(), resp.getStatus());
+        JSONObject jsonObject = (JSONObject) resp.getEntity();
+        System.out.println(jsonObject.toString());
     }
 
     @Test

@@ -15,6 +15,7 @@ import java.util.List;
 public class TemperatureScheduler {
 
     private static List<House> houseList;
+    private static final int UPDATE_TIMER = 60 * 1000;
     private RoomClimateRegulatorService roomClimateRegulatorService;
 
     public TemperatureScheduler(){
@@ -67,7 +68,7 @@ public class TemperatureScheduler {
                         List<String> ids = houseRegistryService.refreshAll();
                         checkHouses(ids);
                         notifyClimateRegulator();
-                        Thread.sleep(50000);
+                        Thread.sleep(UPDATE_TIMER);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

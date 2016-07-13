@@ -26,6 +26,7 @@ public class ScheduleManager {
                          @QueryParam("start") long dateFrom, @QueryParam("end") long dateTo) {
 
         JSONArray answer = new JSONArray();
+
         boolean validHouseID = false;
         for (House house: getHouseList()) {
             if (house.getHouseIndex().equals(houseId)) {
