@@ -1,6 +1,6 @@
 package ge.edu.freeuni.sdp.service.scheduler.temperature.core;
 
-import org.json.JSONArray;
+import java.util.List;
 
 /**
  * Created by vato on 6/24/16.
@@ -27,7 +27,7 @@ public class Floor {
         return schedule;
     }
 
-    public JSONArray getScheduleRange(long dateFrom, long dateTo) {
+    public List<TemperatureEntry> getScheduleRange(long dateFrom, long dateTo) {
         return this.schedule.getSchedule(dateFrom, dateTo);
     }
 

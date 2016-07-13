@@ -3,13 +3,17 @@ import ge.edu.freeuni.sdp.service.scheduler.temperature.core.TemperatureEntry;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -33,7 +37,6 @@ public class ScheduleManagerTest extends JerseyTest {
 
     @Test
     public void get_test_2(){
-        System.out.println("Testing get 2");
         FakeList.instance().clear();
         House house = new House("1");
         house.addFloor("1");
@@ -47,8 +50,18 @@ public class ScheduleManagerTest extends JerseyTest {
                 .request().get();
 
         assertEquals(Response.Status.OK.getStatusCode(), resp.getStatus());
-        JSONObject jsonObject = (JSONObject) resp.getEntity();
-        System.out.println(jsonObject.toString());
+
+        String body = resp.readEntity(String.class);
+        try {
+            JSONArray array = new JSONArray(body);
+            assertEquals(1, array.length());
+            JSONObject json = (JSONObject) array.get(0);
+            assertEquals(json.getLong("dateFrom"), 1);
+            assertEquals(json.getLong("dateTo"), 2);
+            assertEquals(json.getLong("temperature"), 12);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -71,12 +84,12 @@ public class ScheduleManagerTest extends JerseyTest {
         assertEquals(Response.Status.OK.getStatusCode(), resp.getStatus());
         assertEquals(1, FakeList.instance().getHouseList().size());
 
-        JSONArray jsonArray = FakeList.instance().getHouseList().get(0).getSchedule("1", 0, 2);
-        assertNotNull(jsonArray);
+        List<TemperatureEntry> entryList= FakeList.instance().getHouseList().get(0).getSchedule("1", 0, 2);
+        assertNotNull(entryList);
 
-        assertEquals(1, jsonArray.length());
-        assertEquals(1, jsonArray.getJSONObject(0).getLong("dateFrom"));
-        assertEquals(2, jsonArray.getJSONObject(0).getLong("dateTo"));
-        assertEquals(12, jsonArray.getJSONObject(0).getLong("temperature"));
+        assertEquals(1, entryList.size());
+        assertEquals(1, entryList.get(0).getDateFrom());
+        assertEquals(2, entryList.get(0).getDateTo());
+        assertEquals(12, entryList.get(0).getTemperature());
     }
 }

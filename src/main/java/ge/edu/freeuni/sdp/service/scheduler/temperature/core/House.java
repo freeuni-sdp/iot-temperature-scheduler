@@ -32,13 +32,13 @@ public class House {
         this.floorList.add(floor);
     }
 
-    public JSONArray getSchedule(String floorId, long dateFrom, long dateTo) {
+    public List<TemperatureEntry> getSchedule(String floorId, long dateFrom, long dateTo) {
         for (Floor floor : this.floorList) {
             if (floor.getFloorIndex().equals(floorId)) {
                 return floor.getScheduleRange(dateFrom, dateTo);
             }
         }
-        return new JSONArray();
+        return new ArrayList<>();
     }
 
     public void addSchedule(String floorId, TemperatureEntry entry) {

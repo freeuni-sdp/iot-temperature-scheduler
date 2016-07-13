@@ -76,7 +76,7 @@ public class Schedule {
         this.entryList = entryList;
     }
 
-    public JSONArray getSchedule(long dateFrom, long dateTo){
+    public List<TemperatureEntry> getSchedule(long dateFrom, long dateTo){
         JSONArray requestedList = new JSONArray();
         for (TemperatureEntry anEntryList : entryList) {
             if (contains(anEntryList, dateFrom, dateTo)) {
@@ -88,7 +88,7 @@ public class Schedule {
             }
         }
 
-        return requestedList;
+        return entryList;
     }
 
     private boolean contains(TemperatureEntry temp, long dateFrom, long dateTo){

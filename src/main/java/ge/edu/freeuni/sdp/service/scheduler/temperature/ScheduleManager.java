@@ -2,7 +2,6 @@ package ge.edu.freeuni.sdp.service.scheduler.temperature;
 
 import ge.edu.freeuni.sdp.service.scheduler.temperature.core.House;
 import ge.edu.freeuni.sdp.service.scheduler.temperature.core.TemperatureEntry;
-import org.json.JSONArray;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -19,13 +18,13 @@ public class ScheduleManager {
         return TemperatureScheduler.getHouseList();
     }
 
-    @Produces( {MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/schedule")
     @GET
-    public JSONArray get(@PathParam("house_id") String houseId, @PathParam("floor_id") String floorId,
-                         @QueryParam("start") long dateFrom, @QueryParam("end") long dateTo) {
+    public List<TemperatureEntry> get(@PathParam("house_id") String houseId, @PathParam("floor_id") String floorId,
+                                      @QueryParam("start") long dateFrom, @QueryParam("end") long dateTo) {
 
-        JSONArray answer = new JSONArray();
+        List<TemperatureEntry> answer = null;
 
         boolean validHouseID = false;
         for (House house: getHouseList()) {
@@ -35,8 +34,9 @@ public class ScheduleManager {
             }
         }
 
-        if (validHouseID)
+        if (validHouseID) {
             return answer;
+        }
         throw new NotFoundException();
     }
 
